@@ -19,6 +19,7 @@ public class CannonFire : MonoBehaviour
 
     public SwitchCam changeCam;
     public FindCannon objectWeFire;
+    public ShakeCam shakeEffect;
 
 
     private void OnGUI()
@@ -40,6 +41,7 @@ public class CannonFire : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) && capacity == 1)
         {
             Fire();
+            StartCoroutine(shakeEffect.Shake(.4f,.35f));
             objectWeFire.objectWeLook.hitObject.rigidbody.useGravity = true;
             StartCoroutine(FireReset());
         }
