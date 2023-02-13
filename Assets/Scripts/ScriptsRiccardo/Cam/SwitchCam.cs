@@ -15,11 +15,6 @@ public class SwitchCam : MonoBehaviour
     // bool
     private bool changedCam = true;
 
-
-    private void Start()
-    {
-       
-    }
     private void Update()
     {
         if (changedCam == true && Input.GetKeyDown(KeyCode.E))
