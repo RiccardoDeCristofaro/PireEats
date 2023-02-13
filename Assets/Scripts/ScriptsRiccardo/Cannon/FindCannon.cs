@@ -23,40 +23,41 @@ public class FindCannon : MonoBehaviour
         
         if (Physics.Raycast(cameraRay, out hit, 5f))
         {
-            if ((hit.transform.tag == "Cannon") && objectWeLook.grab)
-            {
-                
+            if ((hit.transform.tag == "Cannon") && objectWeLook.grab)               
+            {             
                 enterButton.gameObject.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     LoadCannon();                                                         
                     fireCannon.capacity = 1;
                     objectWeLook.grab = false;
-                                    
                 }
                 changeCam.enabled = true;
                 enterButton.gameObject.SetActive(true);
             }
             else
                 enterButton.gameObject.SetActive(false);
-              
+               
+
         }
         else
         {
             changeCam.enabled = false;
             enterButton.gameObject.SetActive(false);
+            objectWeLook.grab = true;
         }
         
     }
     void LoadCannon()
     {            
-        objectWeLook.hitObject.transform.position = whereToPos.position;
-        objectWeLook.hitObject.rigidbody.useGravity= false;
-        objectWeLook.hitObject.rigidbody.isKinematic = false;
+        objectWeLook.hitObject.transform.position = whereToPos.position;     
+        objectWeLook.hitObject.transform.localRotation = Quaternion.Euler(0, 0, 0);     
+        objectWeLook.hitObject.rigidbody.isKinematic = true;
+        
         objectWeLook.hitObject.transform.SetParent(whereToPos.transform, true);
-        objectWeLook.hitObject.transform.localRotation = Quaternion.Euler(0,0,0);
-        // work     
-        Physics.IgnoreCollision(fireCannon.cannonCollider, objectWeLook.hitObject.collider);
+        
+         
+        
         
         
     }

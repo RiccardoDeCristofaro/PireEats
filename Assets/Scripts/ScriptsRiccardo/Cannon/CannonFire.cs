@@ -40,7 +40,9 @@ public class CannonFire : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && capacity == 1)
         {
+            objectWeFire.objectWeLook.hitObject.rigidbody.isKinematic = false;
             Fire();
+            capacity = 0;
             StartCoroutine(shakeEffect.Shake(.4f,.35f));
             objectWeFire.objectWeLook.hitObject.rigidbody.useGravity = true;
             StartCoroutine(FireReset());

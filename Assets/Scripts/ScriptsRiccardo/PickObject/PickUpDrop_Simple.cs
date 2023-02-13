@@ -30,8 +30,10 @@ public class PickUpDrop_Simple : MonoBehaviour
             // raycasting: check if the object colliding with raycast is on layer Objects
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, pickUpRange, pickUpLayer))
             {
+                if (!pickable)
+                    pickable = true;
+                Debug.DrawRay(transform.position, transform.forward * pickUpRange, Color.green);
 
-                
                 // pickup object
                 if (Input.GetKeyDown(pickUpButton))
                 {
@@ -41,9 +43,7 @@ public class PickUpDrop_Simple : MonoBehaviour
                     hitObject = hit;      
                     SimplePickUp(hitObject);
                 }
-                if (!pickable)
-                    pickable = true;
-                Debug.DrawRay(transform.position, transform.forward * pickUpRange, Color.green);
+               
             }
             else
             {
