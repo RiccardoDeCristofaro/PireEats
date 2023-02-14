@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 101366563}
   m_Layer: 7
   m_Name: Crate
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -402,8 +402,8 @@ GameObject:
   - component: {fileID: 199277094}
   - component: {fileID: 199277093}
   m_Layer: 7
-  m_Name: Crate2
-  m_TagString: Untagged
+  m_Name: Crate_1
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2140,8 +2140,8 @@ GameObject:
   - component: {fileID: 829863436}
   - component: {fileID: 829863435}
   m_Layer: 7
-  m_Name: Crate3
-  m_TagString: Untagged
+  m_Name: Crate_2
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2969,8 +2969,8 @@ GameObject:
   - component: {fileID: 1104423508}
   - component: {fileID: 1104423507}
   m_Layer: 7
-  m_Name: Crate5
-  m_TagString: Untagged
+  m_Name: Crate_4
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3886,8 +3886,8 @@ GameObject:
   - component: {fileID: 1667435742}
   - component: {fileID: 1667435741}
   m_Layer: 7
-  m_Name: Crate4
-  m_TagString: Untagged
+  m_Name: Crate_3
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5430,8 +5430,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 2106211316}
-  foodPrefab: {fileID: 0}
-  spawnPoint: {fileID: 1321771817}
+  potato: {fileID: 919132149155446097, guid: 8fe8d3ce803d8a24095de9e1afd05641, type: 3}
+  fish: {fileID: 919132149155446097, guid: f6f6423da0da87444bd5d56ef1b523e1, type: 3}
+  ham: {fileID: 919132149155446097, guid: 1f886592f8dfa4e4e9dd176f2166f583, type: 3}
+  spice: {fileID: 919132149155446097, guid: 2e7e171c3f13da94a985e7bfdd79de6b, type: 3}
+  spawnPointPot: {fileID: 1321771818}
+  spawnPointFish: {fileID: 1667435744}
+  spawnHam: {fileID: 1568470565}
   playerRotationPoint: {fileID: 1071560639}
   rotX: 45
   rotY: 270
@@ -5474,7 +5479,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2106211314}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29e6e955b709a1f408d6bab9c5f2269e, type: 3}
   m_Name: 
@@ -5483,7 +5488,8 @@ MonoBehaviour:
   pickUpButton: 323
   dropButton: 323
   throwButton: 49
-  pickUpLayer: 6
+  layerRay: 0
+  layerPick: 64
   layerInteract: 7
   layerUsable: 8
   pickUpRange: 2

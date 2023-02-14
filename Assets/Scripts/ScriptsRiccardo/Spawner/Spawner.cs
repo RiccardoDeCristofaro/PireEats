@@ -5,11 +5,24 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public Camera cam;
-    public GameObject foodPrefab;
-    public GameObject spawnPoint, playerRotationPoint;
+    //Go
+    public GameObject potato;
+    public GameObject fish;
+    public GameObject ham;
+    public GameObject spice;
+    //transform
+    private Transform spiceSpawn;
+    public Transform spawnPointPot;
+    public Transform spawnPointFish;
+    public Transform spawnHam;
+    // settings
+    public GameObject playerRotationPoint;
     [SerializeField]
     public float rotX, rotY, rotZ;
     private bool recentlySpawned = false;
+
+    public RaycastHit hit;
+    private Ray ray;
 
     private void Update()
     {
@@ -22,28 +35,45 @@ public class Spawner : MonoBehaviour
     }
     private void CheckView()
     {
-        RaycastHit hit;
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        ray = cam.ScreenPointToRay(Input.mousePosition);
+
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 5f /*distance*/))
         {
-            if (hit.transform.tag == "spawner")
+            if (hit.transform.CompareTag("Spawner"))
             {
-                if (hit.transform.name == "Crate")
+                switch (hit.transform.name)
                 {
-                    rotX = 0f;
-                    rotY = 270f;
-                    rotZ = 0f;
-                    ViewObject(foodPrefab, rotX, rotY, rotZ, ray);
+                    case "Crate":
+                        ManageFood(potato, spawnPointPot);
+                        
+                        break;
+                    case "Crate_1":
+                        ManageFood(fish, spawnPointFish);
+                       
+                        break;
+                    case "Crate_2":
+                        ManageFood(ham, spawnHam);
+                        
+                        break;
+                    case "Crate_3":
+                        ManageFood(spice, spiceSpawn);
+                       
+                        break;
                 }
-                if (hit.transform.name == "Crate_1")
-                {
 
-                }
             }
-            
         }
     }
-    private void ViewObject(GameObject prefab, float rotX, float rotY, float rotZ, Ray ray)
+
+    private void ManageFood(GameObject prefab,Transform spawnPoint)
+    {
+        rotX = 0f;
+        rotY = 270f;
+        rotZ = 0f;
+        ViewObject(prefab,spawnPoint, rotX, rotY, rotZ, ray);
+
+    }
+    private void ViewObject(GameObject prefab,Transform spawnPoint, float rotX, float rotY, float rotZ, Ray ray)
     {
         Instantiate(prefab, new Vector3(
             spawnPoint.transform.position.x,
