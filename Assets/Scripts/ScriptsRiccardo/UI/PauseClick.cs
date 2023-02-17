@@ -6,40 +6,39 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 [DisallowMultipleComponent]
 public class PauseClick : MonoBehaviour
 {
 
-    public List<GameObject> inactiveObjects = new List<GameObject>();
-    public GameObject canvasToDisable;
-    public Scene currentScene;
-    #region	Lifecycle
+    public List<GameObject> disableObjects = new List<GameObject>();
+    public Camera mainCam;
+    private Scene currentScene;
+    #region	Pause
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             Time.timeScale = 0; // timer =0
             currentScene = SceneManager.GetActiveScene(); // get the active scene as a variable;
-
-
-            canvasToDisable.SetActive(false);
-            for (int i = 0; i < inactiveObjects.Count; i++)
+            
+            for (int i = 0; i < disableObjects.Count; i++)
             {
-                inactiveObjects[i].gameObject.SetActive(true);
-
+                disableObjects[i].gameObject.SetActive(true);
+               
             }
+            mainCam.gameObject.SetActive(false);
         }
     }
     public void PlayGame(int scene)
     {
         Time.timeScale = 1; // reset  time
-
-
-        canvasToDisable.SetActive(true);
-        for (int i = 0; i < inactiveObjects.Count; i++)
+        mainCam.gameObject.SetActive(true);
+        for (int i = 0; i < disableObjects.Count; i++)
         {
-            inactiveObjects[i].gameObject.SetActive(false);
+            disableObjects[i].gameObject.SetActive(false);
         }
     }
     public void Quit(int scene)
@@ -49,8 +48,5 @@ public class PauseClick : MonoBehaviour
 
     }
 
-    public void ExitApp()
-    {
-        Application.Quit();
-    }
 }
+#endregion

@@ -31,6 +31,7 @@ public class FindCannon : MonoBehaviour
                     LoadCannon();                                                         
                     fireCannon.capacity = 1;
                     objectWeLook.grab = false;
+                    fireCannon.enabled = true;
                 }
                 changeCam.enabled = true;
                 enterButton.gameObject.SetActive(true);
@@ -45,6 +46,7 @@ public class FindCannon : MonoBehaviour
             changeCam.enabled = false;
             enterButton.gameObject.SetActive(false);
             objectWeLook.grab = true;
+            fireCannon.enabled = false;
         }
         
     }
